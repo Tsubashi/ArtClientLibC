@@ -1,7 +1,6 @@
 #pragma once
 //------------------------------------------------------------------------------
 // FILE:      AllShipSettingsPacket.h
-// PURPOSE:   Provide a tcp client object
 // COPYRIGHT: Copyright (c) 2015 Tsubashi
 //           
 // Distributed under The MIT License (MIT)
@@ -20,10 +19,28 @@ namespace packets {
 //----- Constants / Enumerations -----------------------------------------------
 //----- Structs / Classes ------------------------------------------------------
 ////////////////////////////////////////////////////////////////////////////////
-/// \class serialNMEA
-///
-/// This class is used to open a serial port, read lines, and check to make sure
-
+/// AllShipSettingsPacket
+/// =====================
+/// Type: 0xf754c8fe:0x0f [from server]
+/// Provides the list of available player ships.
+/// 
+/// Payload
+/// --------
+/// Subtype (int)
+///   Always 0x0f for this packet type.
+/// Ships (array)
+///   A list of the eight available player ships. Each ship is structured as follows:
+///   - Drive type (int, enumeration)
+///       Whether the ship has warp or jump drive
+///   - Ship type (int)
+///       ID from vesselData.xml
+///   - Unknown (int) (v2.0 or later)
+///       Only 0x01 has been observed thus far.
+///   - Name (string)
+///       The name of the ship
+/// 
 ////////////////////////////////////////////////////////////////////////////////
-
+struct AllShipSettingsPacket {
+  
+}
 } // namespace
